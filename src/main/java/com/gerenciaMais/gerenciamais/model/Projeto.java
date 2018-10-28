@@ -16,19 +16,18 @@ public class Projeto {
 	@GeneratedValue
 	private Integer id;
 	@NotBlank
-	private String nome;
+	private String titulo;
 	@OneToMany
 	@NotBlank
-	private List<Tarefa> tarefas;
+	private List<Tarefa> tarefas = new ArrayList<>();
 	
 	public Projeto() {
 		
 	}
 
-	public Projeto(Integer id, @NotBlank String nome) {
+	public Projeto(Integer id, @NotBlank String titulo) {
 		this.id = id;
-		this.nome = nome;
-		this.tarefas = new ArrayList<>();
+		this.titulo = titulo;
 	}
 
 	public Integer getId() {
@@ -40,11 +39,11 @@ public class Projeto {
 	}
 
 	public String getNome() {
-		return nome;
+		return titulo;
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.titulo = nome;
 	}
 
 	public List<Tarefa> getTarefas() {
