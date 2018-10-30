@@ -2,7 +2,9 @@ package com.gerenciaMais.gerenciamais.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -21,14 +23,6 @@ public class Tarefa {
 
 	public Tarefa() {
 
-	}
-
-	public Tarefa(Integer id, LocalDateTime dataInicial, @NotBlank String descricao, LocalDateTime dataTermino) {
-		super();
-		this.id = id;
-		this.dataInicial = dataInicial;
-		this.descricao = descricao;
-		this.dataTermino = dataTermino;
 	}
 
 	public Integer getId() {
