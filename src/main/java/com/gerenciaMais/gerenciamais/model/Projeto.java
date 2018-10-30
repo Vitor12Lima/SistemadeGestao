@@ -3,6 +3,7 @@ package com.gerenciaMais.gerenciamais.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ public class Projeto {
 	private Integer id;
 	@NotBlank
 	private String titulo;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@NotBlank
 	private List<Tarefa> tarefas = new ArrayList<>();
 	
@@ -51,7 +52,8 @@ public class Projeto {
 	}
 
 	public void setTarefas(List<Tarefa> tarefas) {
-		this.tarefas = tarefas;
+		this.tarefas.clear();
+		this.tarefas.addAll(tarefas);
 	}
 
 }
