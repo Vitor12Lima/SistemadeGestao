@@ -1,6 +1,14 @@
 package com.gerenciaMais.gerenciamais.model;
 
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -12,13 +20,17 @@ public class Usuario {
 	@Column
 	@NotBlank
 	private String nome;
-	
+
 	@Column(unique = true)
 	@NotBlank
 	private String email;
 	@Column
 	@NotBlank
 	private String senha;
+	
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Tarefa> tarefas = new ArrayList<>();
 
 	public Usuario() {
 
@@ -61,6 +73,15 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public List<Tarefa> getTarefas() {
+		return tarefas;
+	}
+
+	public void setTarefas(List<Tarefa> tarefas) {
+		this.tarefas.clear();
+		this.tarefas.addAll(tarefas);
 	}
 
 }
