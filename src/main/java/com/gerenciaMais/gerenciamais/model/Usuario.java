@@ -32,16 +32,6 @@ public class Usuario {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Tarefa> tarefas = new ArrayList<>();
 
-	public Usuario() {
-
-	}
-
-	public Usuario(Integer id, @NotBlank String nome, @NotBlank String email, @NotBlank String senha) {
-		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.senha = senha;
-	}
 
 	public Integer getId() {
 		return id;
