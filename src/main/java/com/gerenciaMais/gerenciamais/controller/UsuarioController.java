@@ -48,7 +48,7 @@ public class UsuarioController {
 		}).orElseThrow(() -> new ResourceNotFoundException("usuario not found: " + id));
 	}
 	
-	@DeleteMapping("/familymember/{familyMemberId}")
+	@DeleteMapping("/usuario/{id}")
 	public ResponseEntity<?> deleteQuestion(@PathVariable Integer id){
 		return usuarioRepository.findById(id)
 				.map(usuario -> {
@@ -57,5 +57,11 @@ public class UsuarioController {
 				}).orElseThrow(() -> new ResourceNotFoundException("usuario not found: " + id));
 	}
 	
+	@GetMapping("/usuario/{id}")
+	public Usuario retornaUsuarioId(@PathVariable Integer id){
+		return usuarioRepository.findById(id)
+		.orElseThrow(() -> new ResourceNotFoundException("usuario not found: " + id));
+		
+	}
 
 }
