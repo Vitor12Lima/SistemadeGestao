@@ -5,52 +5,28 @@
 <title>Gerencia+</title>
 </head>
 <body>
-<script type="text/javascript">
-	let xhr = new XMLHttpRequest();
-	xhr.open('GET', '/usuario');
-	
-	xhr.onload = function(){
-		//alert(`Loaded: ${this.status} ${this.responseText}`);
-		if(this.status =! 200) console.log("Error!");
-		else{
-			console.log(this.responseTxt);
-			let a = JSON.parse(this.responseText);
-			console.log(a);
-		}
-	};
-	
-	xhr.onerror = () =>alert('error');
-	xhr.send();
-	
-	
-	
-	
-	
-	
-	
-	
-	let xhr2 = new XMLHttpRequest();
-	xhr2.open('POST', '/usuario');
-	
-	xhr2.onload = function(){
-		
-		//alert(`Loaded: ${this.status} ${this.responseText}`);
-		if(this.status == 200){
-			
-			console.log("Sucesso!");
-			console.log(JSON.parse(this.responseText))
-		}
-		
-		
-	};
-	
-	xhr2.setRequestHeader('Content-Type', 'application/json');
 
-	let novo_user = {"nome": "Debora", "email": "aurea@gmail.com", "senha": "3333"};
-	novo_user.nome = "debora";
+	<table id="tabela">
+		<tr>
+			<th>
+				Nome
+			</th>
+			<th>
+				Email
+			</th>
+			<th>
+				Senha
+			</th>
+		</tr>
+	</table>
 	
-	xhr2.send(JSON.stringify(novo_user));
+	<form>
+		<input type="text" placeholder="Digite seu nome de usuario">
+		<input type="email" placeholder="Digite seu email">
+		<input type="password" placeholder="Digite sua senha">
+		<button onclick="adicionar()">ADICIONAR</button>
+	</form>
 	
-</script>
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
