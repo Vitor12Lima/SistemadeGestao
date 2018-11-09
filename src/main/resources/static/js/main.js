@@ -1,28 +1,11 @@
-/*let xhr = new XMLHttpRequest();
-	xhr.open('GET', '/usuario');
 	
-	xhr.onload = function(){
-		//alert(`Loaded: ${this.status} ${this.responseText}`);
-		if(this.status =! 200) console.log("Error!");
-		else{
-			console.log(this.responseTxt);
-			let a = JSON.parse(this.responseText);
-			console.log(a);
-		}
-	};
-	
-	xhr.onerror = () =>alert('error');
-	xhr.send();*/
-
-function adicionar(){
-	
-	function criarTabela() {
+function retornarDados() {
 		let xhr = new XMLHttpRequest();
 		xhr.open('GET', '/usuario');
 		
 		xhr.onload = function(){
 			
-			//alert(`Loaded: ${this.status} ${this.responseText}`);
+			// alert(`Loaded: ${this.status} ${this.responseText}`);
 			if(this.status == 200){
 	
 				let a = JSON.parse(this.responseText);
@@ -31,24 +14,81 @@ function adicionar(){
 				let tab = document.getElementById("tabela");
 				
 				for(let i = 0 ; i < a.content.length ; i++){
-					tab.innerHTML += <tr> <th>${a.nome}</th> <th>${a.email}</th> <th>${a.senha}</th> </tr>
+					
+					let b = a.content[i];
+					tab.innerHTML += `<tr> 
+											<td>${b.nome}</td> 
+											<td>${b.email}</td> 
+											<td>Confidencial</td> 
+									  </tr>`;
 				}
 			}
 			
-			
 		};
 		
-		xhr.send();
+		xhr.send();		
+}
+	
+retornarDados();
+	
+
+function adicionarDados() {
+	
+	let  xhr = new XMLHttpRequest();
+	xhr.open('POST', '/usuario');
+	
+	xhr.onload = function() {
 		
-	}
+		if(this.status == 200){
+			// let a = JSON.parse(this.responseText);
+			// console.log(a);
+			
+			atualizarTabela();
+		}
+	};
 	
-	criarTabela();
+	xhr.setRequestHeader('Content-Type', 'application/json');
 	
+	let campoNome = document.getElementByClassName('nome').value;
+	let campoEmail = document.getElementByClassName('email').value;
+	let campoSenha = document.getElementByClassName('senha').value;
+	
+	let novoUsuario = {
+		"nome": campoNome,
+		"email": campoEmail,
+		"senha": campoSenha
+	};
+	
+	xhr.send(JSON.stringify(novoUsuario));
 }
 
-	/*xhr.setRequestHeader('Content-Type', 'application/json');
+adicionarDados();
 
-	let novo_user = {"nome": "Debora", "email": "aurea@gmail.com", "senha": "3333"};
-	novo_user.nome = "debora";
+function atualizarTabela() {
 	
-	xhr.send(JSON.stringify(novo_user));*/
+	let xhr2 = new XMLHttpRequest();
+	xhr2.open('GET', '/endereco');
+	
+	xhr2.onload = function() {
+		
+		if(this.status == 200) {
+			
+			let a = JSON.parse(this.responseText);
+			
+				let tab = document.getElementById("tabela");
+				
+				let b = a.content[r.content.length-1];
+				console.log(a);
+
+					tab.innerHTML += `<tr> 
+										<td>${b.nome}</td> 
+										<td>${b.email}</td> 
+										<td>Confidencial</td> 
+									</tr>`;
+		}
+		
+	}; 
+		
+	xhr2.send();
+	
+}
