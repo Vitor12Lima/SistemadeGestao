@@ -1,32 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Gerencia+</title>
+	<meta charset="UTF-8">
+	<title>Gerencia+</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		body{
+			padding: 1%;
+			background-color: #F0FFF3;
+		}
+
+		table, tr, th {
+			border: 1px solid white;
+			border-collapse: collapse;
+			font-weight: normal;
+		}
+		
+		th {
+			padding: 2%;
+			background-color: black;
+			color: white;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		
+		table{
+			margin-left: 50%;
+		}
+		
+		#tabela {
+			margin: 2%;
+			width: 50%;
+
+		}
+		
+		.container{
+			margin: 0 auto;
+			width: 80%;
+			background-color: #BCE8CE;
+			padding: 3%;
+		}
+	</style>
 </head>
 <body>
 
-	<table id="tabela">
-		<tr>
-			<th>
-				Nome
-			</th>
-			<th>
-				Email
-			</th>
-			<th>
-				Senha
-			</th>
-		</tr>
-	</table>
-	
-	<form>
-		<input type="text" placeholder="Digite seu nome de usuario">
-		<input type="email" placeholder="Digite seu email">
-		<input type="password" placeholder="Digite sua senha">
-		<button onclick="adicionar()">ADICIONAR</button>
-	</form>
-	
-<script type="text/javascript" src="js/main.js"></script>
+	<div class="container">
+
+		<table id="tabela">
+			<tr>
+				<th>Nome</th>
+				<th>Email</th>
+				<th>Senha</th>
+			</tr>
+		</table>
+
+		<form>
+			<input type="text" placeholder="Digite seu nome de usuario">
+			<input type="email" placeholder="Digite seu email"> <input
+				type="password" placeholder="Digite sua senha">
+			<button onclick="adicionar()">ADICIONAR</button>
+		</form>
+
+	</div>
+
+	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
