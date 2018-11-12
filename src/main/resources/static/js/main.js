@@ -29,40 +29,35 @@ function retornarDados() {
 		xhr.send();		
 }
 	
-retornarDados();
+
 	
 
 function adicionarDados() {
 	
 	let  xhr = new XMLHttpRequest();
-	xhr.open('POST', '/usuario');
+	xhr.open('POST', '/usuario/salvar');
 	
 	xhr.onload = function() {
 		
 		if(this.status == 200){
-			// let a = JSON.parse(this.responseText);
-			// console.log(a);
+			 let a = JSON.parse(this.responseText);
+			console.log(a);
 			
-			atualizarTabela();
+			// atualizarTabela();
 		}
 	};
 	
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	
-	let campoNome = document.getElementByClassName('nome').value;
-	let campoEmail = document.getElementByClassName('email').value;
-	let campoSenha = document.getElementByClassName('senha').value;
+	let usuario = {"nome": document.getElementById("nome").value, 
+			"email": document.getElementById("email").value, 
+			"senha": document.getElementById("senha").value};
 	
-	let novoUsuario = {
-		"nome": campoNome,
-		"email": campoEmail,
-		"senha": campoSenha
-	};
 	
-	xhr.send(JSON.stringify(novoUsuario));
+	xhr.send(JSON.stringify(usuario));
+	
 }
 
-adicionarDados();
 
 function atualizarTabela() {
 	
@@ -92,3 +87,5 @@ function atualizarTabela() {
 	xhr2.send();
 	
 }
+
+retornarDados();
