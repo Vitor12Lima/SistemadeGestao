@@ -30,7 +30,7 @@ public class UsuarioController {
 		return usuarioRepository.findAll(pageable);
 	}
 	
-	@PostMapping("/usuario")
+	@PostMapping("/usuario/salvar")
 	public Usuario salvarUsuario(@Valid @RequestBody Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
