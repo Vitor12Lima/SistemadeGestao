@@ -17,6 +17,7 @@ function retornarDados() {
 					
 					let b = a.content[i];
 					tab.innerHTML += `<tr> 
+											<td>${b.id}</td>
 											<td>${b.nome}</td> 
 											<td>${b.email}</td> 
 											<td>Confidencial</td> 
@@ -35,15 +36,15 @@ function retornarDados() {
 function adicionarDados() {
 	
 	let  xhr = new XMLHttpRequest();
-	xhr.open('POST', '/usuario/salvar');
+	xhr.open('POST', '/usuario');
 	
 	xhr.onload = function() {
 		
 		if(this.status == 200){
-			 let a = JSON.parse(this.responseText);
-			console.log(a);
+			 /*let a = JSON.parse(this.responseText);
+			console.log(a);*/
 			
-			// atualizarTabela();
+			atualizarTabela();
 		}
 	};
 	
@@ -61,10 +62,10 @@ function adicionarDados() {
 
 function atualizarTabela() {
 	
-	let xhr2 = new XMLHttpRequest();
-	xhr2.open('GET', '/endereco');
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', '/usuario');
 	
-	xhr2.onload = function() {
+	xhr.onload = function() {
 		
 		if(this.status == 200) {
 			
@@ -76,6 +77,7 @@ function atualizarTabela() {
 				console.log(a);
 
 					tab.innerHTML += `<tr> 
+										<td>${b.id}</td>
 										<td>${b.nome}</td> 
 										<td>${b.email}</td> 
 										<td>Confidencial</td> 
@@ -84,7 +86,7 @@ function atualizarTabela() {
 		
 	}; 
 		
-	xhr2.send();
+	xhr.send();
 	
 }
 
