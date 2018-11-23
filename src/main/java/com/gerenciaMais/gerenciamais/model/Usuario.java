@@ -20,18 +20,18 @@ public class Usuario {
 	@Column
 	@NotBlank
 	private String nome;
-
 	@Column(unique = true)
 	@NotBlank
 	private String email;
 	@Column
 	@NotBlank
 	private String senha;
-	
-	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Tarefa> tarefas = new ArrayList<>();
-
+	
+	public void adicionarTarefa(Tarefa tarefa) {
+		this.tarefas.add(tarefa);
+	}
 
 	public Integer getId() {
 		return id;

@@ -71,17 +71,17 @@ function atualizarTabela() {
 			
 			let a = JSON.parse(this.responseText);
 			
-				let tab = document.getElementById("tabela");
-				
-				let b = a.content[r.content.length-1];
-				console.log(a);
+			let tab = document.getElementById("tabela");
+			
+			let b = a.content[r.content.length-1];
+			console.log(a);
 
-					tab.innerHTML += `<tr> 
-										<td>${b.id}</td>
-										<td>${b.nome}</td> 
-										<td>${b.email}</td> 
-										<td>Confidencial</td> 
-									</tr>`;
+			tab.innerHTML += `<tr> 
+								<td>${b.id}</td>
+								<td>${b.nome}</td> 
+								<td>${b.email}</td> 
+								<td>Confidencial</td> 
+							</tr>`;
 		}
 		
 	}; 
@@ -89,5 +89,12 @@ function atualizarTabela() {
 	xhr.send();
 	
 }
+
+/*function atualizarUsuario(){
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open('PUT', )
+	
+}*/
 
 retornarDados();
