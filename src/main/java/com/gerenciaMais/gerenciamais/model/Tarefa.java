@@ -21,9 +21,6 @@ public class Tarefa {
 	@NotBlank
 	private String descricao;
 
-	public Tarefa() {
-
-	}
 
 	public Integer getId() {
 		return id;
