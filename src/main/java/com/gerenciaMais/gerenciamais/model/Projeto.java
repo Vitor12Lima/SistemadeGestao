@@ -21,9 +21,9 @@ public class Projeto {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@NotBlank
 	private List<Tarefa> tarefas = new ArrayList<>();
-	
-	public Projeto() {
-		
+
+	public void adicionarTarefa(Tarefa tarefa) {
+		this.tarefas.add(tarefa);
 	}
 
 	public Projeto(Integer id, @NotBlank String titulo) {
