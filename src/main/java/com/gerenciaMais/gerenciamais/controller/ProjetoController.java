@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gerenciaMais.gerenciamais.exception.ResourceNotFoundException;
 import com.gerenciaMais.gerenciamais.model.Projeto;
+import com.gerenciaMais.gerenciamais.model.Tarefa;
 import com.gerenciaMais.gerenciamais.repository.ProjetoRepository;
 
 @RestController
@@ -23,6 +24,7 @@ public class ProjetoController {
 
 	@Autowired
 	private ProjetoRepository projetoRespository;
+	
 
 	@GetMapping("/projeto")
 	public Page<Projeto> retorneUsuarios(Pageable pageable) {
@@ -32,6 +34,15 @@ public class ProjetoController {
 	@PostMapping("/projeto")
 	public Projeto criarProjeto(@Valid @RequestBody Projeto projeto) {
 		return projetoRespository.save(projeto);
+	}
+	
+	@PutMapping("/projeto/{id}/adicionarTarefa")
+	public Projeto adicionarTarefa(@PathVariable Integer id, @Valid @RequestBody Tarefa tarefa) {
+		return projetoRespository.findById(id)
+				.map(projeto -> {
+					projeto.adicionarTarefa(tarefa);
+					return projetoRespository.save(projeto);
+				}).orElseThrow(() -> new ResourceNotFoundException("projeto not found: " + id));
 	}
 
 	@PutMapping("/projeto/{id}")
