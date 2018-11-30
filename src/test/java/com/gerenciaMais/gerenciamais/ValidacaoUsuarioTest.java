@@ -1,39 +1,57 @@
 package com.gerenciaMais.gerenciamais;
 
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import com.gerenciaMais.gerenciamais.relatorioTestes.ValidacaoUsuario;
 
 public class ValidacaoUsuarioTest {
 
-	// ok
+	ValidacaoUsuario usuario;
+
+	@Before
+	public void inicializaClasse() {
+		usuario = new ValidacaoUsuario();
+	}
+
+	//ok
 	@Test
 	public void naoValidarNomeComNumeros() {
+		
+		String nome = "V1tor L1ma" ;
 
-		ValidacaoUsuario usuario = new ValidacaoUsuario();
-
-		String nome = "Vitor L1m4";
-//		String email = "deboraaurea.ifal@gmail.com";
-//		String senha = "1234";
-
-		boolean usuarioValido = usuario.validarNome(nome);
-		assertEquals(false, usuarioValido);
+		assertEquals(false, usuario.naoValidarNomeComNumeros(nome));
 
 	}
 
 	// ok
 	@Test
+	public void naoValidarNomeMenorDoQueOitoDigitos() {
+
+		String nome = "fulano o";
+
+		assertEquals(false, usuario.validarNomeMaiorDoQueOitoLetras(nome));
+	}
+
+	//ok
+	@Test
 	public void naoValidarNomeESobrenomeSemEspacos() {
 
-		ValidacaoUsuario usuario = new ValidacaoUsuario();
-
 		String nome = "VitorLima";
-		String email = "vitor.ifal@gmail.com";
-		String senha = "1234";
 
-		boolean usuarioValido = usuario.validarUsuario(nome, email, senha);
-		assertEquals(false, usuarioValido);
+		assertEquals(false, usuario.validarNomeESobrenomeComAcentosEEspacos(nome));
+
+	}
+
+	// ok
+	@Test
+	public void validarNomeESobrenomeComAcentosEEspaco() {
+
+		String nome = "Débora Áurea";
+
+		assertEquals(true, usuario.validarNomeESobrenomeComAcentosEEspacos(nome));
 
 	}
 
@@ -41,14 +59,9 @@ public class ValidacaoUsuarioTest {
 	@Test
 	public void naoValidarEmailSemArroba() {
 
-		ValidacaoUsuario usuario = new ValidacaoUsuario();
-
-		String nome = "Eliabe Francelino";
 		String email = "eliabegmail.com";
-		String senha = "5678";
 
-		boolean usuarioValido = usuario.validarUsuario(nome, email, senha);
-		assertEquals(false, usuarioValido);
+		assertEquals(false, usuario.validarEmailComArrobaEComPonto(email));
 
 	}
 
@@ -56,57 +69,48 @@ public class ValidacaoUsuarioTest {
 	@Test
 	public void naoValidarEmailSemPonto() {
 
-		ValidacaoUsuario usuario = new ValidacaoUsuario();
-
-		String nome = "Eliabe Francelino";
 		String email = "eliabe@gmailcom";
-		String senha = "5678";
 
-		boolean usuarioValido = usuario.validarUsuario(nome, email, senha);
-		assertEquals(false, usuarioValido);
+		assertEquals(false, usuario.validarEmailComArrobaEComPonto(email));
 
 	}
 
-	//ok
-	@Test
-	public void naoValidarEmailComCaracterEspecial() {
-		
-		ValidacaoUsuario usuario = new ValidacaoUsuario();
-
-		String nome = "Eliabe Francelino";
-		String email = "eliabe$#@gmailcom";
-		String senha = "5678";
-
-		boolean usuarioValido = usuario.validarUsuario(nome, email, senha);
-		assertEquals(false, usuarioValido);
-		
-	}
 	
+	public void naoValidarEmailComCaracterEspecial() {
+
+		String email = "eliabe$#@gmailcom";
+
+		assertEquals(false, usuario.validarEmail(email));
+
+	}
+
+	// ok
 	@Test
 	public void naoValidarSenhaComMenosDoQueOitDigitos() {
-		
-		ValidacaoUsuario usuario = new ValidacaoUsuario();
 
 		String senha = "5678";
 
-		boolean usuarioValido = usuario.validarSenha(senha);
-		assertEquals(true, usuarioValido);
-		
+		assertEquals(false, usuario.validarSenhaComOMinimoDeOitoDigitos(senha));
+
 	}
-	
-	/*@Test
+
+	// ok
+	@Test
+	public void validarSenhaComCaracteres() {
+
+		String senha = "Fulaaa00";
+		assertEquals(true, usuario.validarSenhaComCaracteres(senha));
+
+	}
+
 	public void usuarioValido() {
-		
-		ValidacaoUsuario usuario = new ValidacaoUsuario();
 
 		String nome = "Débora Áurea";
 		String email = "debora@gmail.com";
-		String senha = "9999";
+		String senha = "123456789";
 
-		boolean usuarioValido = usuario.validarUsuario(nome, email, senha);
-		assertEquals(true, usuarioValido);
-		
-	}*/
-	
+		assertEquals(true, usuario.validarUsuario(nome, email, senha));
+
+	}
 
 }
