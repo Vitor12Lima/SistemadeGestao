@@ -2,10 +2,6 @@ package com.gerenciaMais.gerenciamais.relatorioTestes;
 
 public class ValidacaoUsuario {
 
-	public ValidacaoUsuario() {
-
-	}
-
 	public boolean validarUsuario(String nome, String email, String senha) {
 
 		if (validarNome(nome) && validarEmail(email) && validarSenha(senha)) {
@@ -16,15 +12,17 @@ public class ValidacaoUsuario {
 
 	}
 
+	// ok
 	public boolean validarNome(String nome) {
 
-		if (validarNomeComLetrasMaiusculasOuMinusculas(nome) || validarNomeMaiorDoQueOitoLetras(nome)) {
+		if (validarNomeMaiorDoQueOitoLetras(nome) && validarNomeESobrenomeComAcentosEEspacos(nome)) {
 			return true;
 		}
 
 		return false;
 	}
 
+	// ok
 	public boolean validarEmail(String email) {
 
 		if (validarEmailComArrobaEComPonto(email)) {
@@ -35,28 +33,32 @@ public class ValidacaoUsuario {
 
 	}
 
+	public boolean naoValidarNomeComNumeros(String nome) {
+
+		for (int i = 0; i < nome.length(); i++) {
+			
+			if (!Character.isAlphabetic((nome.charAt(i)))) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	// ok
 	public boolean validarSenha(String senha) {
 
-		if (validarSenhaComOMinimoDeOitoDigitos(senha) || validarSenhaComCaracteres(senha)) {
+		if (validarSenhaComOMinimoDeOitoDigitos(senha) && validarSenhaComCaracteres(senha)) {
 			return true;
 		}
 
 		return false;
 
 	}
-	
+
 	///////////////////////////////
 
-	public boolean validarNomeComLetrasMaiusculasOuMinusculas(String nome) {
-
-		if (nome.matches("^[A-Z][a-z]* [[A-Z][a-z]]*")) {
-			return true;
-		}
-
-		return false;
-
-	}
-
+	// ok
 	public boolean validarNomeMaiorDoQueOitoLetras(String nome) {
 
 		if (nome.length() > 8) {
@@ -66,21 +68,18 @@ public class ValidacaoUsuario {
 		return false;
 	}
 
-	public boolean validarNomeComAcentosEEspacos(String nome) {
+	// ok
+	public boolean validarNomeESobrenomeComAcentosEEspacos(String nome) {
 
-		if (nome.matches("[a-zA-Z ]*") || nome.matches("[\\p{L}]+")) {
+		if (nome.matches("^[a-zA-Z\\u00C0-\\u017F´]+\\s+[a-zA-Z\\u00C0-\\u017F´]{0,}$")) {
 			return true;
 		}
 
 		return false;
 	}
 
+	// ok
 	public boolean validarEmailComArrobaEComPonto(String email) {
-
-		/*
-		 * if(email.matches("^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@\"\r\n" +
-		 * "[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$")) {
-		 */
 
 		if (email.matches("\\\\w+@\\\\w+\\\\.\\\\w{2,3}\\\\.\\\\w{2,3}")) {
 
@@ -90,6 +89,7 @@ public class ValidacaoUsuario {
 		return false;
 	}
 
+	// ok
 	public boolean validarSenhaComOMinimoDeOitoDigitos(String senha) {
 
 		if (senha.length() >= 8) {
@@ -99,6 +99,7 @@ public class ValidacaoUsuario {
 		return false;
 	}
 
+	// ok
 	public boolean validarSenhaComCaracteres(String senha) {
 
 		if (senha.matches("[A-Za-z0-9]+")) {
