@@ -4,7 +4,11 @@ import com.gerenciaMais.gerenciamais.model.Usuario;
 
 public class ValidacaoUsuario {
 
-	Usuario usuario = new Usuario();
+	// Usuario usuario = new Usuario();
+
+	public ValidacaoUsuario() {
+
+	}
 
 	public boolean validarLoginUsuario(String nome, String email, String senha) {
 
@@ -18,15 +22,14 @@ public class ValidacaoUsuario {
 
 	public boolean validarNome(String nome) {
 
-		nome = usuario.getNome();
-
 		return nome.matches("^[A-Z][a-z]* [[A-Z][a-z]]*");
 	}
 
 	public boolean validarEmail(String email) {
 
-		if (email.contains("@")) {
-
+		if (email.contains("^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@\"\r\n"
+				+ "[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$")) {
+			
 			return true;
 		}
 
