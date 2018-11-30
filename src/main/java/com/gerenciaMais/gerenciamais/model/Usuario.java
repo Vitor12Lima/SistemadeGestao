@@ -28,9 +28,20 @@ public class Usuario {
 	private String senha;
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Tarefa> tarefas = new ArrayList<>();
-	
+
 	public void adicionarTarefa(Tarefa tarefa) {
 		this.tarefas.add(tarefa);
+	}
+
+	public Usuario(@NotBlank String nome, @NotBlank String email, @NotBlank String senha) {
+
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+	}
+	
+	public Usuario() {
+		
 	}
 
 	public Integer getId() {
