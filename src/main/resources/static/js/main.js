@@ -1,7 +1,7 @@
 	
 //////////////////////////////////////
 
-function retornarDados(){
+/*function retornarDados(){
 	
 	fetch("/usuario")
 		.then(function(response){
@@ -23,7 +23,7 @@ function retornarDados(){
 		}).catch(function(error){
 			console.log(error);
 		});
-}
+}*/
 
 //////////////////////////////////////
 

@@ -10,21 +10,6 @@
 
 	<div class="container">
 
-		<table id="usuarios">
-			<tr>
-				<th>#</th>
-				<th>Nome</th>
-				<th>Email</th>
-				<th>Senha</th>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
-
 		<h2 class="titulo-form">Cadastro do Usuario</h2>
 		<form>
 
@@ -49,24 +34,37 @@
 			</div>
 		</form>
 		
+		<h2 class="titulo-form">Usuários Cadastrados</h2>
+		<table id="usuarios">
+			<tr>
+				<th>#</th>
+				<th>Nome</th>
+				<th>Email</th>
+				<th>Senha</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		
 		<h2 class="titulo-form">Apagar um Usuário</h2>
-		<p class="desc">Através da Tabela acima, escreva o número do id (#) para deletar o cadastro</p>
+		<p class="desc">Através da Tabela acima, escreva o número do ID (#) para deletar o cadastro</p>
 		<form>
 			<div class="grid-item">
 				<label for="number">Número para ser deletado</label>
 				<input type="number" name="number" id="number">
 				<button onclick="apagarUsuario()">APAGAR</button>
 			</div>
-			<div class="grid-item">
-				
-			</div>
 		</form>
 		
 		<h2 class="titulo-form">Atualizar um Usuário</h2>
 		<form id="atualizaUser">
 			<div class="grid-item">
-				<label for="nome">Id do usuário</label>
-				<input type="text" placeholder="Digite seu nome de usuario" name="nome" id="idUser">
+				<label for="nome">ID do usuário</label>
+				<input type="text" placeholder="Digite o ID do usuário" name="nome" id="idUser">
 			</div>
 			<div class="grid-item">
 				<label for="nome">Nome do usuário</label>
@@ -79,10 +77,7 @@
 			<div class="grid-item">
 				<label for="senha">Senha: </label>
 				<input type="password" placeholder="Digite sua senha" name="senha" id="atualizaSenha">
-			</div>
-			<div class="grid-item">
 				<input type="submit" name="salvar" value="SALVAR" onclick="atualizarUsuario()">
-
 			</div>
 		</form>
 
