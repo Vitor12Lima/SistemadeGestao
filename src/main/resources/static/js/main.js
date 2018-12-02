@@ -1,100 +1,136 @@
 	
-function retornarDados() {
-		let xhr = new XMLHttpRequest();
-		xhr.open('GET', '/usuario');
-		
-		xhr.onload = function(){
-			
-			// alert(`Loaded: ${this.status} ${this.responseText}`);
-			if(this.status == 200){
+//////////////////////////////////////
+
+function retornarDados(){
 	
-				let a = JSON.parse(this.responseText);
-				console.log(a);
+	fetch("/usuario")
+		.then(function(response){
+	
+			if(response.status >= 200 && response.status <= 300){
 				
-				let tab = document.getElementById("tabela");
-				
-				for(let i = 0 ; i < a.content.length ; i++){
+				response.json().then(function(data){
 					
-					let b = a.content[i];
-					tab.innerHTML += `<tr> 
-											<td>${b.id}</td>
-											<td>${b.nome}</td> 
-											<td>${b.email}</td> 
-											<td>Confidencial</td> 
-									  </tr>`;
-				}
+					let tab = document.getElementById("usuarios");
+					tab.innerHTML = "<tr><th>#</th><th>Nome</th><th>Email</th><th>Senha</th></tr>";
+					
+					for(let i = 0 ; i < data.content.length ; i++){
+						
+						let b = data.content[i];
+						tab.innerHTML += `<tr><td>${b.id}</td><td>${b.nome}</td><td>${b.email}</td><td>Confidencial</td></tr>`;	
+					}
+				})
 			}
-			
-		};
-		
-		xhr.send();		
+		}).catch(function(error){
+			console.log(error);
+		});
 }
-	
 
-	
+//////////////////////////////////////
 
-function adicionarDados() {
-	
-	let  xhr = new XMLHttpRequest();
-	xhr.open('POST', '/usuario');
-	
-	xhr.onload = function() {
-		
-		if(this.status == 200){
-			 /*let a = JSON.parse(this.responseText);
-			console.log(a);*/
-			
-			atualizarTabela();
-		}
-	};
-	
-	xhr.setRequestHeader('Content-Type', 'application/json');
+function cadastrarUsuario(){
 	
 	let usuario = {"nome": document.getElementById("nome").value, 
-			"email": document.getElementById("email").value, 
+			"email": document.getElementById("email").value,
 			"senha": document.getElementById("senha").value};
+
 	
-	
-	xhr.send(JSON.stringify(usuario));
+	fetch("/usuario", {
+		
+		method: "POST",
+		headers: {
+			"content-type": "application/JSON"
+		},
+		
+		body: JSON.stringify(usuario)
+	}). then(function (response)
+	{
+		
+		criarTabela();
+		
+	}).catch(function (error){
+		
+		console.log(error);
+		
+	});
 	
 }
 
+//////////////////////////////////////
 
-function atualizarTabela() {
+function apagarUsuario(){
 	
-	let xhr = new XMLHttpRequest();
-	xhr.open('GET', '/usuario');
-	
-	xhr.onload = function() {
+	fetch("/usuario/"+document.getElementById("number").value,
+	{
 		
-		if(this.status == 200) {
-			
-			let a = JSON.parse(this.responseText);
-			
-			let tab = document.getElementById("tabela");
-			
-			let b = a.content[r.content.length-1];
-			console.log(a);
+		method: "DELETE",
+		
+	}). then(function (response)
+	{
+		
+		criarTabela();
+		
+	}).catch(function (error){
+		console.log(error);
+	});
+	
+	
+}
 
-			tab.innerHTML += `<tr> 
-								<td>${b.id}</td>
-								<td>${b.nome}</td> 
-								<td>${b.email}</td> 
-								<td>Confidencial</td> 
-							</tr>`;
+function atualizarUsuario(){
+	
+	let usuario_atualizado = {"nome": document.getElementById("atualizaNome").value, 
+			"email": document.getElementById("atualizaEmail").value,
+			"senha": document.getElementById("atualizaSenha").value};
+	
+	fetch("/usuario/" + document.getElementById("idUser").value,{
+		
+		method: "PUT",
+		headers: {
+			"content-type": "application/JSON"
+		},
+		
+		body: JSON.stringify(usuario_atualizado)
+	}). then(function (response){
+		
+		criarTabela();
+		
+	}).catch(function (error){
+		console.log(error);
+	});
+	
+}
+
+//////////////////////////////////////
+
+function criarTabela(){
+	
+	fetch("/usuario").then(function(response){
+		
+		if(response.status >= 200 && response.status <= 300){
+			
+			response.json().then(function(data){
+				
+				let tabela = document.getElementById("usuarios");
+				
+				tabela.innerHTML = ''
+				
+				tabela.innerHTML = "<tr><th>#</th><th>Nome</th><th>Email</th><th>Senha</th></tr>"
+				
+				for(let i = 0 ; i < data.content.length ; i++){
+					
+					let b = data.content[i];
+					tabela.innerHTML += `<tr><td>${b.id}</td><td>${b.nome}</td><td>${b.email}</td><td>Confidencial</td></tr>`
+				}
+			})
 		}
 		
-	}; 
-		
-	xhr.send();
+	}).catch(function(error){
+		console.log(error);
+	});
 	
 }
 
-/*function atualizarUsuario(){
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open('PUT', )
-	
-}*/
+//////////////////////////////////////
 
-retornarDados();
+criarTabela();
+	
