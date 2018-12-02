@@ -10,7 +10,7 @@
 
 	<div class="container">
 
-		<table id="tabela">
+		<table id="usuarios">
 			<tr>
 				<th>#</th>
 				<th>Nome</th>
@@ -25,7 +25,7 @@
 			</tr>
 		</table>
 
-		<h2 id="titulo-form">Cadastro do Usuario</h2>
+		<h2 class="titulo-form">Cadastro do Usuario</h2>
 		<form>
 
 			<div class="grid-item">
@@ -41,11 +41,48 @@
 				<input type="password" placeholder="Digite sua senha" name="senha" id="senha">
 			</div>
 			<div class="grid-item">
-				<input type="submit" name="salvar" value="SALVAR" onclick="adicionarDados()">
+				<input type="submit" name="salvar" value="SALVAR" onclick="cadastrarUsuario()">
 
 			</div>
 			<div class="grid-item">
 				<input type="reset" name="resetar" value="RESETAR">
+			</div>
+		</form>
+		
+		<h2 class="titulo-form">Apagar um Usuário</h2>
+		<p class="desc">Através da Tabela acima, escreva o número do id (#) para deletar o cadastro</p>
+		<form>
+			<div class="grid-item">
+				<label for="number">Número para ser deletado</label>
+				<input type="number" name="number" id="number">
+				<button onclick="apagarUsuario()">APAGAR</button>
+			</div>
+			<div class="grid-item">
+				
+			</div>
+		</form>
+		
+		<h2 class="titulo-form">Atualizar um Usuário</h2>
+		<form id="atualizaUser">
+			<div class="grid-item">
+				<label for="nome">Id do usuário</label>
+				<input type="text" placeholder="Digite seu nome de usuario" name="nome" id="idUser">
+			</div>
+			<div class="grid-item">
+				<label for="nome">Nome do usuário</label>
+				<input type="text" placeholder="Digite seu nome de usuario" name="nome" id="atualizaNome">
+			</div>
+			<div class="grid-item">
+				<label for="email">Email</label>
+				<input type="email" placeholder="Digite seu email" name="email" id="atualizaEmail"> 
+			</div>
+			<div class="grid-item">
+				<label for="senha">Senha: </label>
+				<input type="password" placeholder="Digite sua senha" name="senha" id="atualizaSenha">
+			</div>
+			<div class="grid-item">
+				<input type="submit" name="salvar" value="SALVAR" onclick="atualizarUsuario()">
+
 			</div>
 		</form>
 
