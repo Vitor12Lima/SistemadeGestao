@@ -1,0 +1,29 @@
+.grid-container {
+  
+  grid-template-columns: auto auto auto;
+  background-color: #fff;
+  
+}
+.grid-item {
+ 
+  padding: 20px;
+  background-color: #cccccc;
+  
+  
+}
+
+.fa-edit{display: inline; padding-right: 3px; color: #007BFF;}
+
+.fa-edit:hover { 
+    color: #0251FF;
+}
+
+.fa-trash{display: inline; padding-left: 3px; color: #DC3545;}
+
+.fa-trash:hover { 
+    color: #FF021B;
+}
+p,b{
+    display: inline;
+}
+
