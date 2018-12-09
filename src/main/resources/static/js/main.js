@@ -1,29 +1,3 @@
-	
-//////////////////////////////////////
-
-/*function retornarDados(){
-	
-	fetch("/usuario")
-		.then(function(response){
-	
-			if(response.status >= 200 && response.status <= 300){
-				
-				response.json().then(function(data){
-					
-					let tab = document.getElementById("usuarios");
-					tab.innerHTML = "<tr><th>#</th><th>Nome</th><th>Email</th><th>Senha</th></tr>";
-					
-					for(let i = 0 ; i < data.content.length ; i++){
-						
-						let b = data.content[i];
-						tab.innerHTML += `<tr><td>${b.id}</td><td>${b.nome}</td><td>${b.email}</td><td>Confidencial</td></tr>`;	
-					}
-				})
-			}
-		}).catch(function(error){
-			console.log(error);
-		});
-}*/
 
 //////////////////////////////////////
 
@@ -75,6 +49,8 @@ function apagarUsuario(){
 	
 	
 }
+
+//////////////////////////////////////
 
 function atualizarUsuario(){
 	
