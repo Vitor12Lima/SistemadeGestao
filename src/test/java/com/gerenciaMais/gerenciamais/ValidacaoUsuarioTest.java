@@ -103,14 +103,4 @@ public class ValidacaoUsuarioTest {
 
 	}
 
-	public void usuarioValido() {
-
-		String nome = "Débora Áurea";
-		String email = "debora@gmail.com";
-		String senha = "123456789";
-
-		assertEquals(true, usuario.validarUsuario(nome, email, senha));
-
-	}
-
 }
