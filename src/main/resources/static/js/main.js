@@ -88,7 +88,7 @@ function criarTabela(){
 				
 				let tabela = document.getElementById("usuarios");
 				
-				tabela.innerHTML = ''
+				tabela.innerHTML = '';
 				
 				tabela.innerHTML = "<tr><th>#</th><th>Nome</th><th>Email</th><th>Senha</th></tr>"
 				
