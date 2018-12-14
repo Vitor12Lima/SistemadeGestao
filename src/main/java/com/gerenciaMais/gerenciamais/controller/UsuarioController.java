@@ -29,6 +29,8 @@ public class UsuarioController {
 
 	@GetMapping("/usuario")
 	public Page<Usuario> retorneUsuarios(Pageable pageable) {
+		//return usuarioRepository.findAll(pageable);
+		
 		return usuarioRepository.findAll(pageable);
 	}
 
