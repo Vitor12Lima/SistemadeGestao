@@ -1,5 +1,7 @@
 package com.gerenciaMais.gerenciamais.controller;
 
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,13 @@ public class UsuarioController {
 			usuario.adicionarTarefa(tarefa);
 			return usuarioRepository.save(usuario);
 		}).orElseThrow(() -> new ResourceNotFoundException("tarefa not found: " + id));
+	}
+	
+	@PostMapping("/login")
+	public Usuario login(@RequestBody Map<String, String> params) {
+		return usuarioRepository.findByEmailAndSenha(params.get("email"), params.get("senha"));
+		
+		
 	}
 
 	@PutMapping("/usuario/{id}")
