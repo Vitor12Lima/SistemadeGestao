@@ -20,6 +20,7 @@ function cadastrarTarefa(){
 	}). then(function(response){
 		
 		criarTabelaTarefas();
+		document.location = 'index.html';
 		
 	}).catch(function(error){
 		console.log(error);
@@ -35,7 +36,17 @@ function atualizarTarefa(){
 //////////////////////////////////////
 function apagarTarefa(){
 	
-	
+	fetch("/tarefa/" + document.getElementById('apagar').value,{
+		
+		method: "DELETE",
+		
+	}).then(function(response){
+		
+		criarTabelaTarefas();
+		
+	}).catch(function(error){
+		console.log(error);
+	});
 	
 }
 
@@ -52,12 +63,12 @@ function criarTabelaTarefas(){
 				
 				tabTarefa.innerHTML = '';
 				
-				tabTarefa.innerHTML = "<tr><td></td><td></td><td></td><td></td></tr>";
+				tabTarefa.innerHTML = "<tr><td></td><td></td><td></td><td></td><td><i class=\\\"fas fa-edit\\\"></i></td><td><i class=\"fas fa-trash\"></i></td></tr>";
 					
 					for(let i = 0 ; i < data.content.length ; i++){
 						let b = data.content[i];
 						
-						tabTarefa.innerHTML += `<tr><td>${b.id}</td><td>${b.dataInicial}</td><td>${b.dataTermino}</td><td>${b.descricao}</td></tr>`;
+						tabTarefa.innerHTML += `<tr><td>${b.id}</td><td>${b.dataInicial}</td><td>${b.dataTermino}</td><td>${b.descricao}</td><td><i class="fas fa-edit"></i></td><td><i class="fas fa-trash"></i></td></tr>`;
 						
 					}
 				
