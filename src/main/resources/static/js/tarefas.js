@@ -29,14 +29,38 @@ function cadastrarTarefa(){
 }
 
 //////////////////////////////////////
-function atualizarTarefa(){
+function atualizarTarefa(id){
+	
+	//document.location = 'cadastrartarefas.html';
+	
+	let tarefa = {
+			"dataInicial": document.getElementById("firstName").value,
+			"dataTermino": document.getElementById("lastName").value,
+			"descricao": document.getElementById("comment").value
+		};
+	
+	fetch("/tarefa/"+id, {
+		method: "PUT",
+		headers: {
+			"content-type": "application/JSON"
+		},
+		
+		body: JSON.stringify(tarefa)
+		
+	}).then(function(response){
+		
+		criarTabelaTarefas();
+		document.location = 'index.html';
+	}).catch(function(error){
+		console.log(error);
+	});
 	
 }
 
 //////////////////////////////////////
-function apagarTarefa(){
+function apagarTarefa(id){
 	
-	fetch("/tarefa/" + document.getElementById('apagar').value,{
+	fetch("/tarefa/"+id, {
 		
 		method: "DELETE",
 		
@@ -63,12 +87,12 @@ function criarTabelaTarefas(){
 				
 				tabTarefa.innerHTML = '';
 				
-				tabTarefa.innerHTML = "<tr><td></td><td></td><td></td><td></td><td><i class=\\\"fas fa-edit\\\"></i></td><td><i class=\"fas fa-trash\"></i></td></tr>";
+				tabTarefa.innerHTML = "<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
 					
 					for(let i = 0 ; i < data.content.length ; i++){
 						let b = data.content[i];
 						
-						tabTarefa.innerHTML += `<tr><td>${b.id}</td><td>${b.dataInicial}</td><td>${b.dataTermino}</td><td>${b.descricao}</td><td><i class="fas fa-edit"></i></td><td><i class="fas fa-trash"></i></td></tr>`;
+						tabTarefa.innerHTML += `<tr><td>${b.dataInicial}</td><td>${b.dataTermino}</td><td>${b.descricao}</td><td><i class="fas fa-edit" id="editar" onClick="atualizarTarefa(${b.id})"></i></td><td><i class="fas fa-trash" id="apagar" onClick="apagarTarefa(${b.id})"></i></td></tr>`;
 						
 					}
 				
