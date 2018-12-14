@@ -16,8 +16,7 @@ function cadastrarUsuario(){
 		},
 		
 		body: JSON.stringify(usuario)
-	}). then(function (response)
-	{
+	}). then(function (response){
 		
 		criarTabela();
 		
