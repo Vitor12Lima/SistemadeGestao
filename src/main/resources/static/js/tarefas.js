@@ -88,7 +88,7 @@ function criarTabelaTarefas(){
 				tabTarefa.innerHTML = '';
 				
 				tabTarefa.innerHTML = "<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
-					
+					 
 					for(let i = 0 ; i < data.content.length ; i++){
 						let b = data.content[i];
 						
