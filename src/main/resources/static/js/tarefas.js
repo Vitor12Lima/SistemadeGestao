@@ -20,7 +20,7 @@ function cadastrarTarefa(){
 	}). then(function(response){
 		
 		criarTabelaTarefas();
-		document.location = 'index.html';
+		document.location = 'principal.html';
 		
 	}).catch(function(error){
 		console.log(error);
@@ -87,7 +87,7 @@ function criarTabelaTarefas(){
 				
 				tabTarefa.innerHTML = '';
 				
-				tabTarefa.innerHTML = "<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
+				tabTarefa.innerHTML = "<tr><td></td><td></td><td></td><td></td><td></td></tr>";
 					 
 					for(let i = 0 ; i < data.content.length ; i++){
 						let b = data.content[i];
