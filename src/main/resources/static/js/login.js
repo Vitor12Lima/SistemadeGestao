@@ -16,8 +16,7 @@ function verificarLogin() {
 						
 						console.log(localStorage);
 						
-						//alert("usuario: " + `${a.id}` + " - " + localStorage);
-						document.location = 'index.html';
+						document.location = 'principal.html';
 					}
 				}
 			});
@@ -30,7 +29,7 @@ function verificarLogin() {
 	
 }
 
-function login2(){
+function login(){
 	
 	let email = document.getElementById('inputEmail').value;
 	let senha = document.getElementById('inputPassword').value;
@@ -53,7 +52,7 @@ function login2(){
 			localStorage.setItem("usuario", usuario.id);
 			
 			console.log(localStorage);
-			document.location = 'index.html';
+			document.location = 'principal.html';
 			
 		});
 		
