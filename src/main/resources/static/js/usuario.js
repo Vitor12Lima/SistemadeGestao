@@ -28,23 +28,20 @@ function cadastrarUsuario(){
 
 //////////////////////////////////////
 
-function apagarUsuario(){
+function apagarUsuario(id){
 	
-	fetch("/usuario/"+document.getElementById("number").value,
-	{
+	fetch("/usuario/"+id, {
 		
 		method: "DELETE",
 		
 	}). then(function (response)
 	{
-		
 		criarTabela();
+		document.location = 'register.html';
 		
 	}).catch(function (error){
 		console.log(error);
 	});
-	
-	
 }
 
 //////////////////////////////////////
@@ -63,6 +60,7 @@ function atualizarUsuario(){
 		},
 		
 		body: JSON.stringify(usuario_atualizado)
+		
 	}). then(function (response){
 		
 		criarTabela();
@@ -93,6 +91,8 @@ function criarTabela(){
 					
 					let b = data.content[i];
 					tabela.innerHTML += `<tr><td>${b.id}</td><td>${b.nome}</td><td>${b.email}</td><td>Confidencial</td></tr>`
+					tabela.innerHTML += `<a class="dropdown-item" id="apagar" onclick="apagarUsuario(${b.id})">Apagar Conta</a>`
+					
 				}
 			})
 		}
