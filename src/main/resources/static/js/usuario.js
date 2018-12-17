@@ -2,9 +2,11 @@
 //////////////////////////////////////
 
 function cadastrarUsuario(){
-	let usuario = {"nome": document.getElementById("firstName").value, 
-			"email": document.getElementById("inputEmail").value,
-			"senha": document.getElementById("inputPassword").value};
+	let usuario = {
+		"nome": document.getElementById("firstName").value, 
+		"email": document.getElementById("inputEmail").value,
+		"senha": document.getElementById("inputPassword").value
+	};
 	
 	fetch("/usuario", {
 		method: "POST",
@@ -17,7 +19,7 @@ function cadastrarUsuario(){
 	}). then(function(response){
 		
 		criarTabela();
-		document.location = 'index.html';
+		document.location = 'login.html';
 		
 	}).catch(function (error){
 		console.log(error);
