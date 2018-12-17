@@ -51,6 +51,7 @@ function atualizarTarefa(id){
 		
 		criarTabelaTarefas();
 		document.location = 'index.html';
+		
 	}).catch(function(error){
 		console.log(error);
 	});
@@ -71,7 +72,6 @@ function apagarTarefa(id){
 	}).catch(function(error){
 		console.log(error);
 	});
-	
 }
 
 //////////////////////////////////////
@@ -89,12 +89,12 @@ function criarTabelaTarefas(){
 				
 				tabTarefa.innerHTML = "<tr><td></td><td></td><td></td><td></td><td></td></tr>";
 					 
-					for(let i = 0 ; i < data.content.length ; i++){
-						let b = data.content[i];
-						
-						tabTarefa.innerHTML += `<tr><td>${b.dataInicial}</td><td>${b.dataTermino}</td><td>${b.descricao}</td><td><i class="fas fa-edit" id="editar" onClick="atualizarTarefa(${b.id})"></i></td><td><i class="fas fa-trash" id="apagar" onClick="apagarTarefa(${b.id})"></i></td></tr>`;
-						
-					}
+				for(let i = 0 ; i < data.content.length ; i++){
+					let b = data.content[i];
+					
+					tabTarefa.innerHTML += `<tr><td>${b.dataInicial}</td><td>${b.dataTermino}</td><td>${b.descricao}</td><td><i class="fas fa-edit" id="editar" onClick="atualizarTarefa(${b.id})"></i></td><td><i class="fas fa-trash" id="apagar" onClick="apagarTarefa(${b.id})"></i></td></tr>`;
+					
+				}
 				
 			})
 			
