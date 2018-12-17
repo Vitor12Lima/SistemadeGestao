@@ -19,7 +19,7 @@ function cadastrarUsuario(){
 	}). then(function(response){
 		
 		criarTabela();
-		document.location = 'login.html';
+		document.location = 'index.html';
 		
 	}).catch(function (error){
 		console.log(error);
